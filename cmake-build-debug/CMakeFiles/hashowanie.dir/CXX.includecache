@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/Studia/Semestr II/Projekt/hashowanie/hash.cpp
+hash.h
+E:/Studia/Semestr II/Projekt/hashowanie/hash.h
+
+E:/Studia/Semestr II/Projekt/hashowanie/hash.h
+iostream
+-
+fstream
+-
+string
+-
+
+E:/Studia/Semestr II/Projekt/hashowanie/main.cpp
+hash.h
+E:/Studia/Semestr II/Projekt/hashowanie/hash.h
+
