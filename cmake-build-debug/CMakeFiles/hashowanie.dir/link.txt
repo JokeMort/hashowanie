@@ -1,0 +1,3 @@
+"E:\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\hashowanie.dir/objects.a
+E:\bin\ar.exe cr CMakeFiles\hashowanie.dir/objects.a @CMakeFiles\hashowanie.dir\objects1.rsp
+E:\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\hashowanie.dir/objects.a -Wl,--no-whole-archive -o hashowanie.exe -Wl,--out-implib,libhashowanie.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\hashowanie.dir\linklibs.rsp
