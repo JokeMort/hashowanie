@@ -49,7 +49,7 @@ bool Text::skopiuj_zawartosc() {
                             }
                             if (slowa[pozycja].empty()) {            //sprawdzenie czy pozycja jest pusta
                                 slowa[pozycja] = kopia;             //zapisanie slowa w pozycji
-                                ilosc_powtorzen[pozycja] = 1;
+                                ilosc_powtorzen[pozycja] = 0;
                                 pravda = false;                     //wyjscie z petli
                             } else {
                                 pozycja++;
