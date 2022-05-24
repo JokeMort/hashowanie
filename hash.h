@@ -7,7 +7,7 @@
 
 #ifndef HASHOWANIE_HASH_H
 #define HASHOWANIE_HASH_H
-#define maksrozmiar 60000 //pojemnosc tabeli, maksymalna ilosc slow obslugiwana aktualnie przez program
+#define maksrozmiar 5 //pojemnosc tabeli, maksymalna ilosc slow obslugiwana aktualnie przez program
 using namespace std;
 class Text{
 private:                                        //enkapsulacja zmiennych
