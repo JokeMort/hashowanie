@@ -27,11 +27,11 @@ bool Text::skopiuj_zawartosc() {
     if (plik_z_tekstem.is_open()) {                          //sprawdzenie czy plik jest otwarty
         while (plik_z_tekstem) {                             //badanie pliku az do konca
             znak_badany = plik_z_tekstem.get();              //pobieranie znakow jeden po drugim
-            if ((znak_badany >= 41 && znak_badany <= 90) || (znak_badany >= 96 && znak_badany <= 122)) {
+            if ((znak_badany >= 48 && znak_badany <= 58) || (znak_badany >= 41 && znak_badany <= 90) || (znak_badany >= 96 && znak_badany <= 122)) {
                 tekst += znak_badany;
                 ilosc_liter++;                               //pobieranie liter do slowa
             }
-            if (znak_badany < 41 || (znak_badany > 90 &&  znak_badany < 96) || znak_badany > 122)  {//oddzielanie slow
+            if (znak_badany < 48 || (znak_badany > 57 && znak_badany <  65) || (znak_badany > 90 &&  znak_badany < 96) || znak_badany > 122)  {//oddzielanie slow
                 int lewy_kursor, prawy_kursor;
                 for (lewy_kursor = 0; lewy_kursor < ilosc_liter; lewy_kursor++) {
                     for (prawy_kursor = 0; prawy_kursor < ilosc_liter; prawy_kursor++) {
