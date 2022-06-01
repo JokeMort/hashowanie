@@ -40,7 +40,7 @@ bool Text::skopiuj_zawartosc() {
                             kopia += tekst[n];
                         }
                         unsigned int pozycja = schaszuj_tekst(kopia);        //pobranie miejsca do wpisania slowa
-                        unsigned int start = pozycja;                              //zapisanie miejsca poczatku proby zapisu
+                        unsigned int start = pozycja, licznik_prob_wpisania = 0;                              //zapisanie miejsca poczatku proby zapisu
                         bool pravda = true;                                        //warunek petli
                         while (pravda) {
                             if (slowa[pozycja] == kopia) {
@@ -53,10 +53,11 @@ bool Text::skopiuj_zawartosc() {
                                 pravda = false;                                    //wyjscie z petli
                             } else {
                                 pozycja++;
+                                licznik_prob_wpisania++;
                                 if (pozycja == maksrozmiar) {                                 //zapetlenie miejsc do wpisania, jedynym ograniczeniem jest pojemnosc funkcji
                                     pozycja = 0;
                                 } else {
-                                    if (pozycja + 1 == start) {
+                                    if (licznik_prob_wpisania > maksrozmiar) {
                                         return false;                              //sprawdzenie czy nie doszlo do przepelnienia tabeli
                                     }
                                 }
@@ -83,22 +84,23 @@ int Text::znajdz_w_tekscie(const string& badany_tekst){                         
         unsigned int pozycja = schaszuj_tekst(badany_tekst);                     //pobranie hashu slowa
         int n;
         for (n = 0; n < maksrozmiar; n++) {                                              //sprawdzenie wszystkich pozycji zaczynajac od najbardziej
-            if (pozycja + n >= maksrozmiar) {                                              //zapetlenie sprawdzania
+            if (pozycja >= maksrozmiar) {                                              //zapetlenie sprawdzania
                 pozycja = 0;
             }
-            if (slowa[pozycja+n] == badany_tekst) {
+            if (slowa[pozycja] == badany_tekst) {
                 int ilosc = ilosc_powtorzen[pozycja+n];
                 return ilosc;
             }
+            pozycja++;
     }
     return 0;
 }
 Text::Text() {
     otworz_plik();                                                                 //skopiowanie zawartosci   - wazne
-    /*if ( !skopiuj_zawartosc()){                                                  //awaryjne zamkniecie pliku - przydatne
+    if ( !skopiuj_zawartosc()){                                                  //awaryjne zamkniecie pliku - przydatne
         cout << "Blad programu" << endl;                        //skomentowane poniewaz mielismy usunac couty
-    }*/
-    skopiuj_zawartosc();
+    }
+    /*skopiuj_zawartosc();*/
     zamknij_plik();
 licznik_slow = 0;                                                                 //konstruktor
 }
