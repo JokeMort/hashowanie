@@ -43,13 +43,13 @@ bool Text::skopiuj_zawartosc() {
                         unsigned int start = pozycja, licznik_prob_wpisania = 0;                              //zapisanie miejsca poczatku proby zapisu
                         bool pravda = true;                                        //warunek petli
                         while (pravda) {
-                            if (slowa[pozycja] == kopia) {
-                                ilosc_powtorzen[pozycja]++;
+                            if (*(wsk_slowa+pozycja) == kopia) {
+                                *(wsk_ilosc_powtorzen+pozycja) = *(wsk_ilosc_powtorzen+pozycja) + 1;
                                 pravda = false;
                             }
-                            if (slowa[pozycja].empty()) {                          //sprawdzenie czy pozycja jest pusta
-                                slowa[pozycja] = kopia;                            //zapisanie slowa w pozycji
-                                ilosc_powtorzen[pozycja] = 1;
+                            if ((wsk_slowa+pozycja)->empty()) {                          //sprawdzenie czy pozycja jest pusta
+                                *(wsk_slowa+pozycja) = kopia;                            //zapisanie slowa w pozycji
+                                *(wsk_ilosc_powtorzen+pozycja) = 1;
                                 pravda = false;                                    //wyjscie z petli
                             } else {
                                 pozycja++;
@@ -87,8 +87,8 @@ int Text::znajdz_w_tekscie(const string& badany_tekst){                         
             if (pozycja >= maksrozmiar) {                                              //zapetlenie sprawdzania
                 pozycja = 0;
             }
-            if (slowa[pozycja] == badany_tekst) {
-                int ilosc = ilosc_powtorzen[pozycja+n];
+            if (*(wsk_slowa+pozycja) == badany_tekst) {
+                int ilosc = *(wsk_ilosc_powtorzen+pozycja+n);
                 return ilosc;
             }
             pozycja++;
@@ -96,11 +96,16 @@ int Text::znajdz_w_tekscie(const string& badany_tekst){                         
     return 0;
 }
 Text::Text() {
+    maksrozmiar = 73000;
+    string slowa[maksrozmiar];
+    int ilosc_powtorzen[maksrozmiar];
+    wsk_slowa = &slowa[0];
+    wsk_ilosc_powtorzen = &ilosc_powtorzen[0];
     otworz_plik();                                                                 //skopiowanie zawartosci   - wazne
-    if ( !skopiuj_zawartosc()){                                                  //awaryjne zamkniecie pliku - przydatne
+    /*if ( !skopiuj_zawartosc()){                                                  //awaryjne zamkniecie pliku - przydatne
         cout << "Blad programu" << endl;                        //skomentowane poniewaz mielismy usunac couty
-    }
-    /*skopiuj_zawartosc();*/
+    }*/
+    skopiuj_zawartosc();
     zamknij_plik();
 licznik_slow = 0;                                                                 //konstruktor
 }
